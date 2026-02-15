@@ -3,7 +3,7 @@
 **Currency time-series forecasting in Python** using **NBP (Narodowy Bank Polski) API**.  
 The project builds a **fair benchmark**: the same input window (**W=60**) and the same feature set for all ML models, evaluated on **time-based splits** for multiple horizons (**H = 1, 7, 30, 60**).
 
-📦 **Pipeline:** fetch → dataset → train/eval → plots  
+ **Pipeline:** fetch → dataset → train/eval → plots  
 📊 **Outputs:** `runs/<timestamp>/` (metrics, predictions, plots, logs) + `data/` (datasets)
 
 ---
@@ -118,7 +118,7 @@ python -m src.make_plots
 ```
 
 ---
-## ✨ Outputs
+## Outputs
 The project produces:
 * missing-day report (weekends/holidays)
   * missing_days.json + missing_dates.csv
@@ -132,7 +132,7 @@ The project produces:
   * error histogram + error over time for the best model.
     
 ---
-## 🖼️ Quick preview
+## Quick preview
 
 <!-- Series + split -->
 <table>

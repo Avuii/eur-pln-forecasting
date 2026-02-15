@@ -1,0 +1,110 @@
+2026-02-15 15:13:12,275 | INFO | Pobieram EUR/PLN z NBP | tabela=A | 2010-01-01..2026-02-15
+2026-02-15 15:13:12,275 | INFO | Liczba requestów (<=93 dni): 64
+2026-02-15 15:13:12,275 | INFO | [1/64] GET 2010-01-01..2010-04-03
+2026-02-15 15:13:12,677 | INFO | [2/64] GET 2010-04-04..2010-07-05
+2026-02-15 15:13:12,713 | INFO | [3/64] GET 2010-07-06..2010-10-06
+2026-02-15 15:13:12,757 | INFO | [4/64] GET 2010-10-07..2011-01-07
+2026-02-15 15:13:12,794 | INFO | [5/64] GET 2011-01-08..2011-04-10
+2026-02-15 15:13:12,849 | INFO | [6/64] GET 2011-04-11..2011-07-12
+2026-02-15 15:13:12,904 | INFO | [7/64] GET 2011-07-13..2011-10-13
+2026-02-15 15:13:12,945 | INFO | [8/64] GET 2011-10-14..2012-01-14
+2026-02-15 15:13:12,982 | INFO | [9/64] GET 2012-01-15..2012-04-16
+2026-02-15 15:13:13,019 | INFO | [10/64] GET 2012-04-17..2012-07-18
+2026-02-15 15:13:13,061 | INFO | [11/64] GET 2012-07-19..2012-10-19
+2026-02-15 15:13:13,093 | INFO | [12/64] GET 2012-10-20..2013-01-20
+2026-02-15 15:13:13,127 | INFO | [13/64] GET 2013-01-21..2013-04-23
+2026-02-15 15:13:13,164 | INFO | [14/64] GET 2013-04-24..2013-07-25
+2026-02-15 15:13:13,198 | INFO | [15/64] GET 2013-07-26..2013-10-26
+2026-02-15 15:13:13,233 | INFO | [16/64] GET 2013-10-27..2014-01-27
+2026-02-15 15:13:13,272 | INFO | [17/64] GET 2014-01-28..2014-04-30
+2026-02-15 15:13:13,306 | INFO | [18/64] GET 2014-05-01..2014-08-01
+2026-02-15 15:13:13,346 | INFO | [19/64] GET 2014-08-02..2014-11-02
+2026-02-15 15:13:13,380 | INFO | [20/64] GET 2014-11-03..2015-02-03
+2026-02-15 15:13:13,415 | INFO | [21/64] GET 2015-02-04..2015-05-07
+2026-02-15 15:13:13,452 | INFO | [22/64] GET 2015-05-08..2015-08-08
+2026-02-15 15:13:13,491 | INFO | [23/64] GET 2015-08-09..2015-11-09
+2026-02-15 15:13:13,529 | INFO | [24/64] GET 2015-11-10..2016-02-10
+2026-02-15 15:13:13,562 | INFO | [25/64] GET 2016-02-11..2016-05-13
+2026-02-15 15:13:13,596 | INFO | [26/64] GET 2016-05-14..2016-08-14
+2026-02-15 15:13:13,632 | INFO | [27/64] GET 2016-08-15..2016-11-15
+2026-02-15 15:13:13,667 | INFO | [28/64] GET 2016-11-16..2017-02-16
+2026-02-15 15:13:13,706 | INFO | [29/64] GET 2017-02-17..2017-05-20
+2026-02-15 15:13:13,739 | INFO | [30/64] GET 2017-05-21..2017-08-21
+2026-02-15 15:13:13,780 | INFO | [31/64] GET 2017-08-22..2017-11-22
+2026-02-15 15:13:13,813 | INFO | [32/64] GET 2017-11-23..2018-02-23
+2026-02-15 15:13:13,847 | INFO | [33/64] GET 2018-02-24..2018-05-27
+2026-02-15 15:13:13,897 | INFO | [34/64] GET 2018-05-28..2018-08-28
+2026-02-15 15:13:13,937 | INFO | [35/64] GET 2018-08-29..2018-11-29
+2026-02-15 15:13:13,973 | INFO | [36/64] GET 2018-11-30..2019-03-02
+2026-02-15 15:13:14,005 | INFO | [37/64] GET 2019-03-03..2019-06-03
+2026-02-15 15:13:14,038 | INFO | [38/64] GET 2019-06-04..2019-09-04
+2026-02-15 15:13:14,080 | INFO | [39/64] GET 2019-09-05..2019-12-06
+2026-02-15 15:13:14,119 | INFO | [40/64] GET 2019-12-07..2020-03-08
+2026-02-15 15:13:14,152 | INFO | [41/64] GET 2020-03-09..2020-06-09
+2026-02-15 15:13:14,187 | INFO | [42/64] GET 2020-06-10..2020-09-10
+2026-02-15 15:13:14,223 | INFO | [43/64] GET 2020-09-11..2020-12-12
+2026-02-15 15:13:14,257 | INFO | [44/64] GET 2020-12-13..2021-03-15
+2026-02-15 15:13:14,291 | INFO | [45/64] GET 2021-03-16..2021-06-16
+2026-02-15 15:13:14,327 | INFO | [46/64] GET 2021-06-17..2021-09-17
+2026-02-15 15:13:14,360 | INFO | [47/64] GET 2021-09-18..2021-12-19
+2026-02-15 15:13:14,396 | INFO | [48/64] GET 2021-12-20..2022-03-22
+2026-02-15 15:13:14,432 | INFO | [49/64] GET 2022-03-23..2022-06-23
+2026-02-15 15:13:14,515 | INFO | [50/64] GET 2022-06-24..2022-09-24
+2026-02-15 15:13:14,549 | INFO | [51/64] GET 2022-09-25..2022-12-26
+2026-02-15 15:13:14,584 | INFO | [52/64] GET 2022-12-27..2023-03-29
+2026-02-15 15:13:14,618 | INFO | [53/64] GET 2023-03-30..2023-06-30
+2026-02-15 15:13:14,654 | INFO | [54/64] GET 2023-07-01..2023-10-01
+2026-02-15 15:13:14,706 | INFO | [55/64] GET 2023-10-02..2024-01-02
+2026-02-15 15:13:14,738 | INFO | [56/64] GET 2024-01-03..2024-04-04
+2026-02-15 15:13:14,774 | INFO | [57/64] GET 2024-04-05..2024-07-06
+2026-02-15 15:13:14,816 | INFO | [58/64] GET 2024-07-07..2024-10-07
+2026-02-15 15:13:14,857 | INFO | [59/64] GET 2024-10-08..2025-01-08
+2026-02-15 15:13:14,890 | INFO | [60/64] GET 2025-01-09..2025-04-11
+2026-02-15 15:13:14,928 | INFO | [61/64] GET 2025-04-12..2025-07-13
+2026-02-15 15:13:14,963 | INFO | [62/64] GET 2025-07-14..2025-10-14
+2026-02-15 15:13:14,995 | INFO | [63/64] GET 2025-10-15..2026-01-15
+2026-02-15 15:13:15,029 | INFO | [64/64] GET 2026-01-16..2026-02-15
+2026-02-15 15:13:15,080 | INFO | Zapisano: C:\Users\admin\Desktop\UNI\SEM V\PZII\project\data\raw_eurpln_2010-01-01_2026-02-15.csv | rekordów=4067 | 2010-01-04..2026-02-13
+2026-02-15 15:13:15,080 | INFO | Snapshot zapisany: C:\Users\admin\Desktop\UNI\SEM V\PZII\project\runs\2026-02-15_151311\raw_eurpln.csv
+2026-02-15 15:13:15,106 | INFO | Braki danych (kalendarzowo): missing_total=1823 | weekend=1684 | weekday(święta/inne)=139 | ratio=0.310
+2026-02-15 15:13:15,106 | INFO | Zapisano: C:\Users\admin\Desktop\UNI\SEM V\PZII\project\runs\2026-02-15_151311\missing_days.json oraz C:\Users\admin\Desktop\UNI\SEM V\PZII\project\runs\2026-02-15_151311\missing_dates.csv
+2026-02-15 15:13:15,615 | INFO | Wczytuję RAW: C:\Users\admin\Desktop\UNI\SEM V\PZII\project\runs\2026-02-15_151311\raw_eurpln.csv
+2026-02-15 15:13:15,637 | INFO | Buduję datasety: pair=eurpln | W=60 | H=[1, 7, 30, 60]
+2026-02-15 15:13:15,787 | INFO | Zapisano: C:\Users\admin\Desktop\UNI\SEM V\PZII\project\data\ds_H1.csv | rows=4007 | cols=76
+2026-02-15 15:13:15,936 | INFO | Zapisano: C:\Users\admin\Desktop\UNI\SEM V\PZII\project\data\ds_H7.csv | rows=4001 | cols=76
+2026-02-15 15:13:16,081 | INFO | Zapisano: C:\Users\admin\Desktop\UNI\SEM V\PZII\project\data\ds_H30.csv | rows=3978 | cols=76
+2026-02-15 15:13:16,247 | INFO | Zapisano: C:\Users\admin\Desktop\UNI\SEM V\PZII\project\data\ds_H60.csv | rows=3948 | cols=76
+2026-02-15 15:13:16,248 | INFO | Manifest: C:\Users\admin\Desktop\UNI\SEM V\PZII\project\runs\2026-02-15_151311\datasets_manifest.json
+2026-02-15 15:13:17,614 | INFO | H=1 | ds=ds_H1.csv | train=3617 val=130 test=260 | feats=72
+2026-02-15 15:13:20,228 | INFO | H=1 | Ridge tuned(TSS): {'cv_best_RMSE': 0.016014025282715564, 'best_params': {'model__alpha': 3.0}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 15:13:20,983 | INFO | H=1 | ElasticNet tuned(TSS): {'cv_best_RMSE': 0.01582116469070171, 'best_params': {'model__l1_ratio': 0.95, 'model__alpha': 0.0003}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 15:19:22,493 | INFO | H=1 | RandomForest tuned(TSS): {'cv_best_RMSE': 0.02697413087035651, 'best_params': {'n_estimators': 900, 'min_samples_leaf': 1, 'max_features': 0.8, 'max_depth': 8}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 15:22:21,695 | INFO | H=1 | ExtraTrees tuned(TSS): {'cv_best_RMSE': 0.029383027651754788, 'best_params': {'n_estimators': 1500, 'min_samples_leaf': 4, 'max_features': 0.8, 'max_depth': 8}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 15:23:23,886 | INFO | H=1 | HistGB tuned(TSS): {'cv_best_RMSE': 0.028931847349325673, 'best_params': {'min_samples_leaf': 10, 'max_iter': 600, 'max_depth': 3, 'learning_rate': 0.01, 'l2_regularization': 0.01}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 15:23:24,624 | INFO | H=1 | SARIMAX(1, 1, 1) fair-fit per row (W=60) na val+test ...
+2026-02-15 15:23:38,342 | INFO | H=7 | ds=ds_H7.csv | train=3611 val=130 test=260 | feats=72
+2026-02-15 15:23:38,701 | INFO | H=7 | Ridge tuned(TSS): {'cv_best_RMSE': 0.04365383591848649, 'best_params': {'model__alpha': 3.0}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 15:23:40,576 | INFO | H=7 | ElasticNet tuned(TSS): {'cv_best_RMSE': 0.04317054142529227, 'best_params': {'model__l1_ratio': 0.95, 'model__alpha': 0.001}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 15:29:41,004 | INFO | H=7 | RandomForest tuned(TSS): {'cv_best_RMSE': 0.06859976972918122, 'best_params': {'n_estimators': 900, 'min_samples_leaf': 1, 'max_features': 0.8, 'max_depth': 4}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 15:32:26,602 | INFO | H=7 | ExtraTrees tuned(TSS): {'cv_best_RMSE': 0.07961680076590547, 'best_params': {'n_estimators': 1500, 'min_samples_leaf': 8, 'max_features': 'sqrt', 'max_depth': 6}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 15:33:24,300 | INFO | H=7 | HistGB tuned(TSS): {'cv_best_RMSE': 0.07471919702775921, 'best_params': {'min_samples_leaf': 80, 'max_iter': 600, 'max_depth': 3, 'learning_rate': 0.01, 'l2_regularization': 0.1}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 15:33:24,800 | INFO | H=7 | SARIMAX(1, 1, 1) fair-fit per row (W=60) na val+test ...
+2026-02-15 15:33:34,437 | INFO | H=30 | ds=ds_H30.csv | train=3588 val=130 test=260 | feats=72
+2026-02-15 15:33:34,794 | INFO | H=30 | Ridge tuned(TSS): {'cv_best_RMSE': 0.08228156756187609, 'best_params': {'model__alpha': 100.0}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 15:33:37,412 | INFO | H=30 | ElasticNet tuned(TSS): {'cv_best_RMSE': 0.08253587973657359, 'best_params': {'model__l1_ratio': 0.95, 'model__alpha': 0.001}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 15:39:58,367 | INFO | H=30 | RandomForest tuned(TSS): {'cv_best_RMSE': 0.11916124630557515, 'best_params': {'n_estimators': 1200, 'min_samples_leaf': 8, 'max_features': 'sqrt', 'max_depth': 4}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 15:42:41,145 | INFO | H=30 | ExtraTrees tuned(TSS): {'cv_best_RMSE': 0.12413910580626145, 'best_params': {'n_estimators': 1500, 'min_samples_leaf': 8, 'max_features': 'log2', 'max_depth': 6}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 15:43:29,802 | INFO | H=30 | HistGB tuned(TSS): {'cv_best_RMSE': 0.1255264067034911, 'best_params': {'min_samples_leaf': 80, 'max_iter': 200, 'max_depth': 3, 'learning_rate': 0.01, 'l2_regularization': 0.1}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 15:43:30,005 | INFO | H=30 | SARIMAX(1, 1, 1) fair-fit per row (W=60) na val+test ...
+2026-02-15 15:43:41,425 | INFO | H=60 | ds=ds_H60.csv | train=3558 val=130 test=260 | feats=72
+2026-02-15 15:43:41,771 | INFO | H=60 | Ridge tuned(TSS): {'cv_best_RMSE': 0.10629139616114491, 'best_params': {'model__alpha': 100.0}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 15:43:45,717 | INFO | H=60 | ElasticNet tuned(TSS): {'cv_best_RMSE': 0.10717652253562797, 'best_params': {'model__l1_ratio': 0.1, 'model__alpha': 0.01}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 15:49:29,263 | INFO | H=60 | RandomForest tuned(TSS): {'cv_best_RMSE': 0.1341007819845729, 'best_params': {'n_estimators': 1200, 'min_samples_leaf': 8, 'max_features': 'sqrt', 'max_depth': 4}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 15:51:57,052 | INFO | H=60 | ExtraTrees tuned(TSS): {'cv_best_RMSE': 0.13825508532750355, 'best_params': {'n_estimators': 1500, 'min_samples_leaf': 8, 'max_features': 'log2', 'max_depth': 6}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 15:52:45,699 | INFO | H=60 | HistGB tuned(TSS): {'cv_best_RMSE': 0.14153028450217575, 'best_params': {'min_samples_leaf': 80, 'max_iter': 200, 'max_depth': 3, 'learning_rate': 0.01, 'l2_regularization': 0.1}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 15:52:45,900 | INFO | H=60 | SARIMAX(1, 1, 1) fair-fit per row (W=60) na val+test ...
+2026-02-15 15:52:58,144 | INFO | Zapisano: C:\Users\admin\Desktop\UNI\SEM V\PZII\project\runs\2026-02-15_151311\metrics.csv
+2026-02-15 15:52:58,144 | INFO | Zapisano: C:\Users\admin\Desktop\UNI\SEM V\PZII\project\runs\2026-02-15_151311\predictions.csv
+2026-02-15 15:52:58,144 | INFO | Zapisano: C:\Users\admin\Desktop\UNI\SEM V\PZII\project\runs\2026-02-15_151311\best_baselines.json
+2026-02-15 15:52:58,144 | INFO | Zapisano: C:\Users\admin\Desktop\UNI\SEM V\PZII\project\runs\2026-02-15_151311\best_ml_params.json
+2026-02-15 15:52:58,144 | INFO | Zapisano: C:\Users\admin\Desktop\UNI\SEM V\PZII\project\runs\2026-02-15_151311\search_spaces.json

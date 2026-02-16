@@ -1,0 +1,32 @@
+2026-02-15 10:55:54,596 | INFO | H=1 | ds=ds_H1.csv | train=3617 val=130 test=260 | feats=72
+2026-02-15 10:56:42,694 | INFO | H=1 | Ridge tuned(TSS): {'cv_best_RMSE': 0.016014025282715567, 'best_params': {'model__alpha': 3.0}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 10:56:48,425 | INFO | H=1 | ElasticNet tuned(TSS): {'cv_best_RMSE': 0.015821164685345734, 'best_params': {'model__l1_ratio': 0.95, 'model__alpha': 0.0003}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 11:01:11,178 | INFO | H=1 | RandomForest tuned(TSS): {'cv_best_RMSE': 0.027040909553538627, 'best_params': {'n_estimators': 900, 'min_samples_leaf': 1, 'max_features': 0.8, 'max_depth': 8}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 11:02:52,317 | INFO | H=1 | ExtraTrees tuned(TSS): {'cv_best_RMSE': 0.029653557902790607, 'best_params': {'n_estimators': 1500, 'min_samples_leaf': 4, 'max_features': 0.8, 'max_depth': 8}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 11:03:48,890 | INFO | H=1 | HistGB tuned(TSS): {'cv_best_RMSE': 0.02926268393544269, 'best_params': {'min_samples_leaf': 10, 'max_iter': 400, 'max_depth': 3, 'learning_rate': 0.03, 'l2_regularization': 0.0}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 11:03:49,411 | INFO | H=1 | SARIMAX(1, 1, 1) fair-fit per row (W=60) na val+test ...
+2026-02-15 11:05:11,419 | INFO | H=7 | ds=ds_H7.csv | train=3611 val=130 test=260 | feats=72
+2026-02-15 11:05:12,211 | INFO | H=7 | Ridge tuned(TSS): {'cv_best_RMSE': 0.04365383591848649, 'best_params': {'model__alpha': 3.0}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 11:05:14,437 | INFO | H=7 | ElasticNet tuned(TSS): {'cv_best_RMSE': 0.04322857817085675, 'best_params': {'model__l1_ratio': 0.6, 'model__alpha': 0.001}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 11:10:32,648 | INFO | H=7 | RandomForest tuned(TSS): {'cv_best_RMSE': 0.07358912511906161, 'best_params': {'n_estimators': 1200, 'min_samples_leaf': 8, 'max_features': 0.6, 'max_depth': 6}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 11:12:34,761 | INFO | H=7 | ExtraTrees tuned(TSS): {'cv_best_RMSE': 0.07988906531089071, 'best_params': {'n_estimators': 1500, 'min_samples_leaf': 8, 'max_features': 'sqrt', 'max_depth': 6}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 11:13:42,113 | INFO | H=7 | HistGB tuned(TSS): {'cv_best_RMSE': 0.07726170664293265, 'best_params': {'min_samples_leaf': 80, 'max_iter': 800, 'max_depth': 4, 'learning_rate': 0.01, 'l2_regularization': 0.0}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 11:13:43,342 | INFO | H=7 | SARIMAX(1, 1, 1) fair-fit per row (W=60) na val+test ...
+2026-02-15 11:13:58,383 | INFO | H=30 | ds=ds_H30.csv | train=3588 val=130 test=260 | feats=72
+2026-02-15 11:13:58,819 | INFO | H=30 | Ridge tuned(TSS): {'cv_best_RMSE': 0.0822815675618761, 'best_params': {'model__alpha': 100.0}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 11:14:07,896 | INFO | H=30 | ElasticNet tuned(TSS): {'cv_best_RMSE': 0.08256451368920212, 'best_params': {'model__l1_ratio': 0.1, 'model__alpha': 0.01}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 11:20:20,769 | INFO | H=30 | RandomForest tuned(TSS): {'cv_best_RMSE': 0.11926056076902507, 'best_params': {'n_estimators': 1200, 'min_samples_leaf': 8, 'max_features': 'sqrt', 'max_depth': 4}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 11:22:12,660 | INFO | H=30 | ExtraTrees tuned(TSS): {'cv_best_RMSE': 0.12423056341394059, 'best_params': {'n_estimators': 1200, 'min_samples_leaf': 8, 'max_features': 'log2', 'max_depth': 6}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 11:23:13,090 | INFO | H=30 | HistGB tuned(TSS): {'cv_best_RMSE': 0.1255264067034911, 'best_params': {'min_samples_leaf': 80, 'max_iter': 200, 'max_depth': 3, 'learning_rate': 0.01, 'l2_regularization': 0.1}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 11:23:13,327 | INFO | H=30 | SARIMAX(1, 1, 1) fair-fit per row (W=60) na val+test ...
+2026-02-15 11:23:26,766 | INFO | H=60 | ds=ds_H60.csv | train=3558 val=130 test=260 | feats=72
+2026-02-15 11:23:27,120 | INFO | H=60 | Ridge tuned(TSS): {'cv_best_RMSE': 0.10629139616114494, 'best_params': {'model__alpha': 100.0}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 11:23:32,199 | INFO | H=60 | ElasticNet tuned(TSS): {'cv_best_RMSE': 0.10717647974219333, 'best_params': {'model__l1_ratio': 0.1, 'model__alpha': 0.01}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 11:29:16,925 | INFO | H=60 | RandomForest tuned(TSS): {'cv_best_RMSE': 0.13386165241781026, 'best_params': {'n_estimators': 1200, 'min_samples_leaf': 8, 'max_features': 'sqrt', 'max_depth': 4}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 11:30:50,513 | INFO | H=60 | ExtraTrees tuned(TSS): {'cv_best_RMSE': 0.13783503605673325, 'best_params': {'n_estimators': 1200, 'min_samples_leaf': 8, 'max_features': 'log2', 'max_depth': 6}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 11:31:46,504 | INFO | H=60 | HistGB tuned(TSS): {'cv_best_RMSE': 0.14153028450217575, 'best_params': {'min_samples_leaf': 80, 'max_iter': 200, 'max_depth': 3, 'learning_rate': 0.01, 'l2_regularization': 0.1}, 'n_splits': 5, 'n_iter': 40}
+2026-02-15 11:31:46,741 | INFO | H=60 | SARIMAX(1, 1, 1) fair-fit per row (W=60) na val+test ...
+2026-02-15 11:32:00,397 | INFO | Zapisano: C:\Users\admin\Desktop\UNI\SEM V\PZII\project\runs\2026-02-15_105554\metrics.csv
+2026-02-15 11:32:00,397 | INFO | Zapisano: C:\Users\admin\Desktop\UNI\SEM V\PZII\project\runs\2026-02-15_105554\predictions.csv
+2026-02-15 11:32:00,397 | INFO | Zapisano: C:\Users\admin\Desktop\UNI\SEM V\PZII\project\runs\2026-02-15_105554\best_baselines.json
+2026-02-15 11:32:00,397 | INFO | Zapisano: C:\Users\admin\Desktop\UNI\SEM V\PZII\project\runs\2026-02-15_105554\best_ml_params.json

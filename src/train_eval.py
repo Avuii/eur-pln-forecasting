@@ -21,6 +21,18 @@ from statsmodels.tools.sm_exceptions import ConvergenceWarning
 
 from src.config import load_config, make_run_dir, resolve_path, save_run_config
 
+warnings.filterwarnings(
+    "ignore",
+    message=r"`sklearn\.utils\.parallel\.delayed` should be used with `sklearn\.utils\.parallel\.Parallel`.*",
+    category=UserWarning,
+    module=r"sklearn\.utils\.parallel",
+)
+warnings.filterwarnings(
+    "ignore",
+    message=r"The total space of parameters .* is smaller than n_iter=.*",
+    category=UserWarning,
+    module=r"sklearn\.model_selection\._search",
+)
 warnings.simplefilter("ignore", ConvergenceWarning)
 
 

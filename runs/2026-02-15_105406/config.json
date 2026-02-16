@@ -1,0 +1,49 @@
+{
+  "project": "eurpln_forecast",
+  "currency": "EUR",
+  "base": "PLN",
+  "nbp_table": "A",
+  "target_field": "mid",
+  "date_range": {
+    "start": "2010-01-01",
+    "end": "2026-02-15"
+  },
+  "window_W": 60,
+  "horizons_H": [
+    1,
+    7,
+    30,
+    60
+  ],
+  "split": {
+    "type": "fixed",
+    "val_size": 130,
+    "test_size": 260
+  },
+  "features": {
+    "lags": true,
+    "delta": true,
+    "logret": true,
+    "rolling_windows": [
+      5,
+      10,
+      20,
+      60
+    ],
+    "ema_spans": [
+      10,
+      20
+    ]
+  },
+  "tuning": {
+    "use_timeseries_cv": true,
+    "tscv_splits": 5,
+    "n_iter": 40
+  },
+  "seed": 123,
+  "output": {
+    "runs_dir": "runs",
+    "data_dir": "data",
+    "log_name": "run.log"
+  }
+}

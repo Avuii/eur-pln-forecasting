@@ -1,0 +1,20 @@
+2026-02-14 22:51:47,954 | INFO | H=1 | ds=ds_H1.csv | train=3617 val=130 test=260 | feats=72
+2026-02-14 22:51:48,001 | INFO | H=1 | Ridge tuned: {'val_RMSE': 0.01061869352134533, 'alpha': 1.0}
+2026-02-14 22:51:48,941 | INFO | H=1 | ElasticNet tuned: {'val_RMSE': 0.010501620214669117, 'alpha': 0.0003, 'l1_ratio': 0.1}
+2026-02-14 22:51:55,069 | INFO | H=1 | SARIMAX(1, 1, 1) fair-fit per row (W=60) na val+test ...
+2026-02-14 22:52:07,410 | INFO | H=7 | ds=ds_H7.csv | train=3611 val=130 test=260 | feats=72
+2026-02-14 22:52:07,457 | INFO | H=7 | Ridge tuned: {'val_RMSE': 0.02565326412908218, 'alpha': 0.0001}
+2026-02-14 22:52:09,126 | INFO | H=7 | ElasticNet tuned: {'val_RMSE': 0.02568291389657345, 'alpha': 0.0001, 'l1_ratio': 0.1}
+2026-02-14 22:52:13,370 | INFO | H=7 | SARIMAX(1, 1, 1) fair-fit per row (W=60) na val+test ...
+2026-02-14 22:52:25,068 | INFO | H=30 | ds=ds_H30.csv | train=3588 val=130 test=260 | feats=72
+2026-02-14 22:52:25,130 | INFO | H=30 | Ridge tuned: {'val_RMSE': 0.04598814525527288, 'alpha': 0.0001}
+2026-02-14 22:52:27,689 | INFO | H=30 | ElasticNet tuned: {'val_RMSE': 0.0438300099215178, 'alpha': 0.01, 'l1_ratio': 0.8}
+2026-02-14 22:52:31,875 | INFO | H=30 | SARIMAX(1, 1, 1) fair-fit per row (W=60) na val+test ...
+2026-02-14 22:52:44,033 | INFO | H=60 | ds=ds_H60.csv | train=3558 val=130 test=260 | feats=72
+2026-02-14 22:52:44,087 | INFO | H=60 | Ridge tuned: {'val_RMSE': 0.0450535197220864, 'alpha': 100.0}
+2026-02-14 22:52:47,968 | INFO | H=60 | ElasticNet tuned: {'val_RMSE': 0.043361432863770574, 'alpha': 0.01, 'l1_ratio': 0.8}
+2026-02-14 22:52:52,730 | INFO | H=60 | SARIMAX(1, 1, 1) fair-fit per row (W=60) na val+test ...
+2026-02-14 22:53:05,974 | INFO | Zapisano: C:\Users\admin\Desktop\UNI\SEM V\PZII\project\runs\2026-02-14_225147\metrics.csv
+2026-02-14 22:53:05,974 | INFO | Zapisano: C:\Users\admin\Desktop\UNI\SEM V\PZII\project\runs\2026-02-14_225147\predictions.csv
+2026-02-14 22:53:05,974 | INFO | Zapisano: C:\Users\admin\Desktop\UNI\SEM V\PZII\project\runs\2026-02-14_225147\best_baselines.json
+2026-02-14 22:53:05,974 | INFO | Zapisano: C:\Users\admin\Desktop\UNI\SEM V\PZII\project\runs\2026-02-14_225147\best_ml_params.json

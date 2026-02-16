@@ -1,0 +1,398 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[polish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage[section]{placeins}
+\usepackage{microtype}
+\usepackage{caption}
+\usepackage{placeins}
+\usepackage{float}
+\usepackage{anyfontsize}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{subcaption}
+\captionsetup[subfigure]{labelformat=empty}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{siunitx}
+\sisetup{
+  detect-all,
+  scientific-notation = true,
+  round-mode = places,
+  round-precision = 4
+}
+\usepackage{placeins}
+\usepackage{setspace}
+\usepackage{amsmath}
+\usepackage{titlesec}
+\usepackage{lmodern}
+\usepackage{enumitem}
+\setlist[description]{style=nextline, font=\normalfont, labelwidth=6.2cm, leftmargin=6.4cm, itemsep=2pt}
+\geometry{top=1.5cm, bottom=2.2cm, left=2.2cm, right=2.2cm}
+\setstretch{1.3}
+\usepackage{enumitem}
+% Ustawienia globalne dla list
+\setlist[itemize]{noitemsep, topsep=0pt, parsep=0pt, partopsep=0pt, leftmargin=1.2cm}
+\setlist[enumerate]{noitemsep, topsep=0pt, parsep=0pt, partopsep=0pt, leftmargin=1.2cm}
+\titlespacing*{\section}{0pt}{10pt}{5pt}
+\titlespacing*{\subsection}{0pt}{8pt}{3pt}
+
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+
+    {\LARGE \textbf{Uniwersytet Łódzki}}\\[0.3cm]
+    {\Large \textbf{Wydział Fizyki i Informatyki Stosowanej}}\\[2cm]
+
+    {\normalsize \textbf{ RAPORT Z ĆWICZEŃ}}\\[0.1cm]
+    {\Large \textbf{Programowanie zaawansowane II}}\\[4cm]
+
+{\fontsize{25pt}{30pt}\selectfont\textbf{Ocena jakości prognoz kursu waluty}}\\[0.3cm]
+{\fontsize{21pt}{26pt}\selectfont\textbf{Porównanie modeli}}\\[0.4cm]
+{\fontsize{14pt}{18pt}\selectfont\textbf{Ridge, ElasticNet, Random Forest, Extra Trees}}\\[0.15cm]
+{\fontsize{14pt}{18pt}\selectfont\textbf{HistGradientBoosting oraz ARIMA/SARIMAX}}\\
+
+
+
+    \vfill
+
+    \begin{flushright}
+        \begin{tabular}{rl}
+            \textbf{Autor:} & Katarzyna Stańczyk \\[0cm]
+            \textbf{Kierunek studiów:} & Informatyka \\[0cm]
+            \textbf{Data wykonania:} & 15 luty 2026 \\[0cm]
+            \textbf{Rok akademicki:} & 2025/2026 \\
+        \end{tabular}
+    \end{flushright}
+
+    \vspace{2cm}
+
+    {\large Łódź, 2026}
+
+\end{titlepage}
+\vspace*{0.5cm}
+
+\section{Cel projektu}
+Celem projektu było zbudowanie i ocenienie predyktora kursu \textbf{EUR/PLN} na podstawie danych dziennych NBP (tabela A).
+Porównano:
+(i) proste metody bazowe (m.in. \emph{naive}, średnie kroczące),
+(ii) klasyczne modele uczenia maszynowego (Ridge, ElasticNet, RandomForest, ExtraTrees, HistGradientBoosting),
+oraz (iii) model szeregów czasowych SARIMAX (traktowany pomocniczo).
+Ocena została wykonana w czterech horyzontach prognozy: $H\in\{1,7,30,60\}$ dni roboczych.
+
+\section{Dane}
+Źródłem danych jest API Narodowego Banku Polskiego (NBP), kurs średni EUR/PLN \cite{nbpapi}.
+Zakres pobrania: od 2010-01-01 do 2026-02-15, przy czym ostatnia dostępna obserwacja w zbiorze wypada na 2026-02-13
+(weekendy i święta nie są publikowane).
+Zapisano 4067 obserwacji, a brakujące dni (głównie weekendy/święta) nie były imputowane.
+
+\section{Przygotowanie danych i cechy}
+\subsection{Definicja problemu}
+Z szeregu kursu $y_t$ budujemy przykłady uczące w trybie \emph{sliding window}.
+Dla każdej daty $t$ tworzymy wektor cech $x_t$ na podstawie ostatnich $W=60$ notowań
+oraz cech pochodnych, a etykietą jest kurs w przyszłości:
+\begin{equation}
+\hat{y}_{t+H} \approx f(x_t), \qquad H\in\{1,7,30,60\}.
+\label{eq:forecast_def}
+\end{equation}
+
+\subsection{Cechy wejściowe}
+W projekcie użyto wyłącznie informacji pochodzących z kursu (bez zmiennych zewnętrznych):
+\begin{itemize}
+\item \textbf{lagi poziomu} $y_{t-1},\dots,y_{t-W}$,
+\item \textbf{zmiany/zwroty}: $\Delta y_t = y_t-y_{t-1}$, log-zwrot $\log(y_t/y_{t-1})$ i ich lagi,
+\item \textbf{statystyki kroczące} dla okien $K\in\{5,10,20,60\}$: SMA, EMA, odchylenie std, min, max,
+\item \textbf{cechy kalendarzowe}: dzień tygodnia i miesiąc.
+\end{itemize}
+
+\subsection{Podział train/val/test}
+Zastosowano podział czasowy bez mieszania próbek:
+\begin{itemize}
+\item \textbf{train}: wszystkie przykłady do 2024-07-24,
+\item \textbf{val}:  2024-07-25 -- 2025-01-31 (130 próbek),
+\item \textbf{test}:  2025-02-03 -- 2026-02-13 (260 próbek).
+\end{itemize}
+Dobór hiperparametrów wykonywano na zbiorze walidacyjnym oraz przy pomocy \texttt{TimeSeriesSplit} (5 podziałów)
+i \texttt{RandomizedSearchCV} (40 losowań).
+
+\section{Modele}
+\subsection{Metody bazowe }
+\begin{description}[style=nextline, font=\normalfont\bfseries,
+  leftmargin=0cm, labelwidth=0cm, labelsep=0.5em, itemsep=4pt]
+\item[Naive (persistence)] 
+$\hat{y}_{t+H}=y_t$.\\
+\textbf{Założenia:} silna inercja / random-walk.\\
+\textbf{Hiperparametry:} brak.\\
+\textbf{Plusy:} bardzo mocny i stabilny benchmark.\\
+\textbf{Minusy:} nie przewiduje zwrotów ani trendów.
+
+\item[Momentum]
+Ekstrapolacja na podstawie ostatniej zmiany (kontynuacja ruchu).\\
+\textbf{Hiperparametry:} definicja zmiany (np. 1-dniowa vs uśredniona).\\
+\textbf{Plusy:} proste „kierunkowe” zachowanie.\\
+\textbf{Minusy:} bardzo wrażliwy na szum.
+
+\item[SMA]
+Średnia z ostatnich $K$ obserwacji.\\
+\textbf{Hiperparametry:} $K$ (dobierane na walidacji).\\
+\textbf{Plusy:} stabilne, często dobre dla dużego $H$.\\
+\textbf{Minusy:} opóźnienie reakcji (lag).
+
+\item[EMA]
+Wygładzanie wykładnicze (większa waga nowszych obserwacji).\\
+\textbf{Hiperparametry:} $K$ / parametr wygładzania (dobierany na walidacji).\\
+\textbf{Plusy:} bardziej adaptacyjne niż SMA.\\
+\textbf{Minusy:} nadal słabe w „przewidywaniu” zwrotów.
+\end{description}
+
+\subsection{Modele liniowe (scikit-learn)}
+\begin{description}[style=nextline, font=\normalfont\bfseries,
+  leftmargin=0cm, labelwidth=0cm, labelsep=0.5em, itemsep=4pt]
+\item [Ridge (regresja liniowa + $L2$)]
+\textbf{Co robi:} minimalizuje błąd + kara $L2$ stabilizująca wagi przy wielu skorelowanych cechach.\\
+\textbf{Założenia:} relacja w przybliżeniu liniowa; względnie stały reżim.\\
+\textbf{Hiperparametry:} \texttt{alpha}.\\
+\textbf{Plusy:} szybki, odporny na współliniowość, dobry baseline ML.\\
+\textbf{Minusy:} nie łapie nieliniowości.
+
+\item[ElasticNet ($L1$+$L2$)]
+\textbf{Co robi:} łączy Ridge i Lasso (stabilizacja + częściowa selekcja cech).\\
+\textbf{Założenia:} tylko część cech niesie sygnał, reszta jest redundantna.\\
+\textbf{Hiperparametry:} \texttt{alpha}, \texttt{l1\_ratio}.\\
+\textbf{Plusy:} ogranicza przeuczenie, może „wyzerować” część cech.\\
+\textbf{Minusy:} nadal liniowy, wrażliwy na dobór regularyzacji.
+\end{description}
+
+\subsection{Zespoły drzew (scikit-learn)}
+\begin{description}[style=nextline, font=\normalfont\bfseries,
+  leftmargin=0cm, labelwidth=0cm, labelsep=0.5em, itemsep=4pt]
+\item[RandomForest]
+\textbf{Co robi:} uśrednia wiele drzew trenowanych na próbkach bootstrap (model nieliniowy).\\
+\textbf{Kiedy działa dobrze:} krótkie horyzonty, nieliniowe zależności w cechach.\\
+\textbf{Hiperparametry:} \texttt{n\_estimators}, \texttt{max\_depth}, \texttt{min\_samples\_leaf}, \texttt{max\_features}.\\
+\textbf{Plusy:} łapie nieliniowości, nie wymaga skalowania.\\
+\textbf{Minusy:} kosztowny; w szeregach czasowych może się przeuczać; słaba ekstrapolacja.
+
+\item[ExtraTrees]
+\textbf{Co robi:} jak RF, ale z bardziej losowymi podziałami (często mniejsza wariancja).\\
+\textbf{Hiperparametry:} jak RF. \\
+\textbf{Plusy:} bywa bardziej „odporny” niż RF. \\
+\textbf{Minusy:} większy bias przy zbyt dużej losowości; podobne ograniczenia jak RF. \\
+\end{description}
+
+\subsection{Boosting drzew (scikit-learn)}
+\begin{description}[style=nextline, font=\normalfont\bfseries,
+  leftmargin=0cm, labelwidth=0cm, labelsep=0.5em, itemsep=4pt]
+\item[HistGradientBoostingRegressor]
+\textbf{Co robi:} sekwencyjnie dodaje drzewa korygujące błędy poprzednich (silny model tablicowy). \\
+\textbf{Założenia:} złożony sygnał i nieliniowości; konieczne strojenie i kontrola przeuczenia. \\
+\textbf{Hiperparametry:} \texttt{learning\_rate}, \texttt{max\_iter}, \texttt{max\_depth}/\texttt{max\_leaf\_nodes},
+\texttt{min\_samples\_leaf}, (opc.) \texttt{early\_stopping}. \\
+\textbf{Plusy:} często top jakość przy dobrym tuningu. \\
+\textbf{Minusy:} czuły na hiperparametry i drift; dla dużego $H$ może „wygładzać” i tworzyć bias. 
+\end{description}
+
+\subsection{Modele szeregów czasowych (statsmodels)}
+\begin{description}[style=nextline, font=\normalfont\bfseries,
+  leftmargin=0cm, labelwidth=0cm, labelsep=0.5em, itemsep=4pt]
+\item[SARIMAX]
+\textbf{Co robi:} ARIMA z komponentem sezonowym; model liniowy zależności czasowych (AR/MA) + różnicowanie. \\
+\textbf{Założenia:} (po różnicowaniu) stacjonarność; poprawne odwrócenie transformacji do poziomu.\\
+\textbf{Hiperparametry:} \texttt{order}=$(p,d,q)$, \texttt{seasonal\_order}=$(P,D,Q,s)$.\\
+\textbf{Plusy:} klasyczny benchmark, diagnostyka reszt.\\
+\textbf{Minusy:} bardzo wrażliwy na konfigurację; przy złych ustawieniach może dawać skrajne błędy.\\
+\end{description}
+
+\noindent
+ Modele liniowe trenowano na cechach standaryzowanych, natomiast modele drzewiaste nie wymagają skalowania.
+\section{Metryki oceny}
+Błąd pojedynczej prognozy definiujemy jako:
+\begin{equation}
+e_i=\hat{y}_i - y_i.
+\label{eq:error_def}
+\end{equation}
+W raporcie wykorzystano następujące metryki (na zbiorach val i test):
+\begin{equation}
+\mathrm{MAE}=\frac{1}{n}\sum_{i=1}^{n}\left|e_i\right|.
+\label{eq:mae}
+\end{equation}
+\begin{equation}
+\mathrm{RMSE}=\sqrt{\frac{1}{n}\sum_{i=1}^{n} e_i^2 }.
+\label{eq:rmse}
+\end{equation}
+\begin{equation}
+\mathrm{MAPE}=\frac{100\%}{n}\sum_{i=1}^{n}\left|\frac{e_i}{y_i}\right|.
+\label{eq:mape}
+\end{equation}
+\begin{equation}
+\mathrm{sMAPE}=\frac{100\%}{n}\sum_{i=1}^{n}\frac{2|e_i|}{|\hat{y}_i|+|y_i|}.
+\label{eq:smape}
+\end{equation}
+Dla $H=1$ dodatkowo raportowano \emph{directional accuracy} (czy model poprawnie przewidział znak zmiany względem $y_t$).
+
+\section{Wyniki}
+Poniższa tabela podsumowuje najlepszy model na teście dla każdego horyzontu.
+Wartości są w PLN (MAPE/sMAPE w \%).
+
+\begin{table}[H]
+\centering
+\caption{Najlepszy model na zbiorze testowym dla każdego horyzontu (błąd $e=\hat{y}-y$).}
+\label{tab:best_models}
+
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{r l r r r r r r r r}
+\toprule
+H & Model & RMSE & MAE & MAPE & sMAPE & DirAcc & MeanErr & P95|e| & Max|e| \\
+\midrule
+1  & RandomForest & 0.010734 & 0.008113 & 0.191052 & 0.191059 & 0.562 & -0.001080 & 0.020090 & 0.061615 \\
+7  & Naive        & 0.035038 & 0.026292 & 0.620318 & 0.620241 &       & -0.004577 & 0.063073 & 0.118177 \\
+30 & Naive        & 0.048398 & 0.038670 & 0.910825 & 0.909678 &       &  0.007420 & 0.112293 & 0.160986 \\
+60 & EMA(K=60)    & 0.051438 & 0.042774 & 1.008289 & 1.006102 &       &  0.032204 & 0.154482 & 0.181174 \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\newpage
+\subsection{Porównanie RMSE i MAE (test)}
+Na rys. \ref{fig:rmse_all} oraz \ref{fig:mae_all} pokazano RMSE/MAE dla wszystkich modeli (skala logarytmiczna z uwagi na odstający SARIMAX).
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}{0.48\linewidth}\centering
+\includegraphics[width=\linewidth]{rmse_test_H1.png}
+\caption{$H=1$}
+\end{subfigure}
+\begin{subfigure}{0.48\linewidth}\centering
+\includegraphics[width=\linewidth]{rmse_test_H7.png}
+\caption{$H=7$}
+\end{subfigure}
+
+\begin{subfigure}{0.48\linewidth}\centering
+\includegraphics[width=\linewidth]{rmse_test_H30.png}
+\caption{$H=30$}
+\end{subfigure}
+\begin{subfigure}{0.48\linewidth}\centering
+\includegraphics[width=\linewidth]{rmse_test_H60.png}
+\caption{$H=60$}
+\end{subfigure}
+\caption{RMSE na zbiorze testowym dla różnych horyzontów.}
+\label{fig:rmse_all}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}{0.48\linewidth}\centering
+\includegraphics[width=\linewidth]{mae_test_H1.png}
+\caption{$H=1$}
+\end{subfigure}
+\begin{subfigure}{0.48\linewidth}\centering
+\includegraphics[width=\linewidth]{mae_test_H7.png}
+\caption{$H=7$}
+\end{subfigure}
+
+\begin{subfigure}{0.48\linewidth}\centering
+\includegraphics[width=\linewidth]{mae_test_H30.png}
+\caption{$H=30$}
+\end{subfigure}
+\begin{subfigure}{0.48\linewidth}\centering
+\includegraphics[width=\linewidth]{mae_test_H60.png}
+\caption{$H=60$}
+\end{subfigure}
+\caption{MAE na zbiorze testowym dla różnych horyzontów.}
+\label{fig:mae_all}
+\end{figure}
+
+\subsection{Prognoza vs rzeczywistość (test)}
+Dla krótkiego horyzontu ($H=1$) wszystkie topowe modele są bardzo blisko wartości rzeczywistych,
+a różnice między nimi są niewielkie.
+Dla dłuższych horyzontów (np. $H=30$) modele ML mają tendencję do nadmiernego wygładzania i/lub biasu,
+przez co baseline \emph{naive} bywa trudny do pobicia.
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}{0.48\linewidth}\centering
+\includegraphics[width=\linewidth]{pred_vs_true_top3_H1.png}
+\caption{$H=1$}
+\end{subfigure}
+\begin{subfigure}{0.48\linewidth}\centering
+\includegraphics[width=\linewidth]{pred_vs_true_top3_H7.png}
+\caption{$H=7$}
+\end{subfigure}
+\begin{subfigure}{0.48\linewidth}\centering
+\includegraphics[width=\linewidth]{pred_vs_true_top3_H30.png}
+\caption{$H=30$}
+\end{subfigure}
+\begin{subfigure}{0.48\linewidth}\centering
+\includegraphics[width=\linewidth]{pred_vs_true_top3_H60.png}
+\caption{$H=60$}
+\end{subfigure}
+\caption{Porównanie predykcji i wartości rzeczywistych na teście (top 3 wg RMSE).}
+\label{fig:pred_vs_true}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}{0.48\linewidth}\centering
+\includegraphics[width=\linewidth]{series_split.png}
+\caption{}
+\end{subfigure}
+\begin{subfigure}{0.48\linewidth}\centering
+\includegraphics[width=\linewidth]{series_split_zoom.png}
+\caption{}
+\end{subfigure}
+\end{figure}
+
+
+\subsection{Analiza błędów}
+Na rys. \ref{fig:err_h60} pokazano rozkład błędu i jego przebieg w czasie dla najlepszego modelu przy $H=60$ (EMA).
+Widoczna jest zmiana biasu w czasie, co sugeruje \emph{dryf} (zmianę reżimu kursu), którego proste baseline nie „nadążają” idealnie.
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}{0.48\linewidth}\centering
+\includegraphics[width=\linewidth]{err_hist_best_H60_EMA_K_60_.png}
+\caption{Histogram błędu}
+\end{subfigure}
+\begin{subfigure}{0.48\linewidth}\centering
+\includegraphics[width=\linewidth]{err_series_best_H60_EMA_K_60_.png}
+\caption{Błąd w czasie}
+\end{subfigure}
+\caption{Analiza błędu dla $H=60$ (najlepszy model na teście).}
+\label{fig:err_h60}
+\end{figure}
+
+\section{Omówienie wyników}
+\begin{itemize}
+\item \textbf{$H=1$:} RandomForest osiąga najlepszy RMSE, ale poprawa względem \emph{naive} jest niewielka.
+W praktyce oznacza to, że dla kursu walutowego w horyzoncie 1 dnia bardzo trudno jest uzyskać stabilną przewagę nad modelem „jutro będzie jak dziś”.
+\item \textbf{$H=7$ i $H=30$:} najlepszy jest \emph{naive}. Modele ML (zwłaszcza zespoły drzew) poprawiają wyniki na walidacji,
+ale pogarszają się na teście (ryzyko przeuczenia oraz zmiana reżimu w okresie testowym).
+\item \textbf{$H=60$:} najlepszy jest baseline EMA(K=60), a HistGradientBoosting jest bardzo blisko.
+Dla długich horyzontów modele tendencjonalnie wygładzają serię i trudno im uchwycić przyszłe zmiany bez dodatkowych danych zewnętrznych.
+\item \textbf{SARIMAX:} w tej konfiguracji daje błąd rzędu kilku PLN, co jest niefizyczne w porównaniu do pozostałych wyników.
+Najbardziej prawdopodobna przyczyna to niepoprawna konfiguracja (np. zła skala danych, problem z różnicowaniem/odwróceniem transformacji lub nieudane dopasowanie).
+W dalszej części projektu SARIMAX powinien być uruchamiany w wersji zweryfikowanej lub wyłączony z porównań.
+\end{itemize}
+
+\section{Wnioski}
+Najważniejszy wniosek jest praktyczny: dla kursu EUR/PLN prognozowanie poziomu kursu na podstawie samych historycznych notowań
+w krótkim horyzoncie ($H=1$) daje co najwyżej niewielką poprawę względem \emph{naive},
+a dla dłuższych horyzontów baseline (naive/EMA) bywa trudny do pobicia.
+Dalsze ulepszenia powinny iść w kierunku:
+(i) modelowania \emph{zmiany} (delta/zwrotu) zamiast poziomu, oraz (ii) wykorzystania dodatkowych zmiennych zewnętrznych (jeśli regulamin na to pozwala).
+
+\nocite{*}
+\newpage
+\bibliographystyle{plain}
+\bibliography{bibliography}
+
+\end{document}
+
+
+

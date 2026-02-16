@@ -1,0 +1,27 @@
+{
+  "pair": "eurpln",
+  "W": 60,
+  "raw_csv_used": "C:\\Users\\admin\\Desktop\\UNI\\SEM V\\PZII\\project\\runs\\2026-02-15_172548\\raw_eurpln.csv",
+  "datasets": {
+    "H1": {
+      "path": "C:\\Users\\admin\\Desktop\\UNI\\SEM V\\PZII\\project\\data\\ds_H1.csv",
+      "rows": 4007,
+      "cols": 76
+    },
+    "H7": {
+      "path": "C:\\Users\\admin\\Desktop\\UNI\\SEM V\\PZII\\project\\data\\ds_H7.csv",
+      "rows": 4001,
+      "cols": 76
+    },
+    "H30": {
+      "path": "C:\\Users\\admin\\Desktop\\UNI\\SEM V\\PZII\\project\\data\\ds_H30.csv",
+      "rows": 3978,
+      "cols": 76
+    },
+    "H60": {
+      "path": "C:\\Users\\admin\\Desktop\\UNI\\SEM V\\PZII\\project\\data\\ds_H60.csv",
+      "rows": 3948,
+      "cols": 76
+    }
+  }
+}

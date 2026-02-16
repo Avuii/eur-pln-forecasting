@@ -1,4 +1,3 @@
-# src/build_dataset.py
 from __future__ import annotations
 
 import argparse
@@ -36,11 +35,6 @@ def _pair_name(currency: str) -> str:
 
 
 def _find_raw_csv(cfg: dict[str, Any], run_dir: Path | None) -> Path:
-    """
-    Szuka raw CSV:
-      1) jeśli jest snapshot w run_dir -> bierzemy snapshot (reproducibility)
-      2) jeśli nie ma -> bierzemy cache w data/
-    """
     currency = str(cfg["currency"]).upper()
     pair = _pair_name(currency)
 
@@ -65,14 +59,6 @@ def _find_raw_csv(cfg: dict[str, Any], run_dir: Path | None) -> Path:
 
 
 def _build_features(df_raw: pd.DataFrame, W: int) -> pd.DataFrame:
-    """
-    Buduje cechy:
-      - lag_0..lag_{W-1} (poziom kursu)
-      - delta_1 (y_t - y_{t-1})
-      - logret_1 (log(y_t) - log(y_{t-1}))
-      - sma_{5,10,20,60}, std_{5,10,20,60} (ddof=0)
-      - ema_{10,20} (adjust=False)
-    """
     df = df_raw.copy()
     if "date" not in df.columns or "mid" not in df.columns:
         raise ValueError("RAW CSV musi mieć kolumny: date, mid")
@@ -100,17 +86,46 @@ def _build_features(df_raw: pd.DataFrame, W: int) -> pd.DataFrame:
     for span in (10, 20):
         df[f"ema_{span}"] = y.ewm(span=span, adjust=False).mean()
 
+    # -------------------- calendar features --------------------
+    dow = df["date"].dt.dayofweek.astype(int)          # 0=Mon..6=Sun
+    month = df["date"].dt.month.astype(int)           # 1..12
+    df["dow"] = dow
+    df["month"] = month
+
+    # encoding cykliczny
+    df["dow_sin"] = np.sin(2 * np.pi * dow / 7.0)
+    df["dow_cos"] = np.cos(2 * np.pi * dow / 7.0)
+
+    m0 = (month - 1).astype(float)  # 0..11
+    df["month_sin"] = np.sin(2 * np.pi * m0 / 12.0)
+    df["month_cos"] = np.cos(2 * np.pi * m0 / 12.0)
+
     return df
 
 
 def _make_dataset_for_H(feat_df: pd.DataFrame, W: int, H: int) -> pd.DataFrame:
-    """
-    Dla każdego t: wektor cech z ostatnich W notowań, target = y_{t+H}.
-    """
+
     df = feat_df.copy()
     df["y_t"] = df["y"]
     df["target_date"] = df["date"].shift(-H)
     df["target"] = df["y"].shift(-H)
+
+    #kalendarz target_date
+    tdate = pd.to_datetime(df["target_date"])
+    t_dow = tdate.dt.dayofweek.astype("Int64")
+    t_month = tdate.dt.month.astype("Int64")
+
+    df["target_dow"] = t_dow
+    df["target_month"] = t_month
+
+    # encoding cykliczny dla target
+    # tam gdzie target_date jest NA, i tak wyleci w dropna
+    df["target_dow_sin"] = np.sin(2 * np.pi * t_dow.astype(float) / 7.0)
+    df["target_dow_cos"] = np.cos(2 * np.pi * t_dow.astype(float) / 7.0)
+
+    tm0 = (t_month.astype(float) - 1.0)  # 0..11
+    df["target_month_sin"] = np.sin(2 * np.pi * tm0 / 12.0)
+    df["target_month_cos"] = np.cos(2 * np.pi * tm0 / 12.0)
 
     # stabilna kolejność kolumn
     meta_cols = ["date", "target_date", "y_t", "target"]
@@ -120,6 +135,14 @@ def _make_dataset_for_H(feat_df: pd.DataFrame, W: int, H: int) -> pd.DataFrame:
         "sma_5", "sma_10", "sma_20", "sma_60",
         "std_5", "std_10", "std_20", "std_60",
         "ema_10", "ema_20",
+
+        #calendar @ t
+        "dow", "month", "dow_sin", "dow_cos", "month_sin", "month_cos",
+
+        #calendar @ target_date
+        "target_dow", "target_month",
+        "target_dow_sin", "target_dow_cos",
+        "target_month_sin", "target_month_cos",
     ]
     keep = meta_cols + lag_cols + other_cols
     df = df[keep]
@@ -132,7 +155,7 @@ def _make_dataset_for_H(feat_df: pd.DataFrame, W: int, H: int) -> pd.DataFrame:
 def main(config_path: str = "configs/config.json", run_dir: str | None = None) -> None:
     cfg = load_config(config_path)
 
-    # run_dir: jeśli podany -> użyj, jeśli nie -> utwórz nowy / weź najnowszy run (ułatwia ręczne odpalenie)
+    # run_dir: jeśli podany -> użyj, jeśli nie -> utwórz nowy / weź najnowszy run
     if run_dir is None:
         run_path = make_run_dir(cfg["output"]["runs_dir"])
         save_run_config(cfg, run_path)
@@ -159,6 +182,7 @@ def main(config_path: str = "configs/config.json", run_dir: str | None = None) -
     data_dir.mkdir(parents=True, exist_ok=True)
 
     logger.info(f"Buduję datasety: pair={pair} | W={W} | H={Hs}")
+    logger.info("NICE#14 aktywne: dodaję dow/month (sin/cos) + target_dow/target_month (sin/cos).")
 
     manifest: dict[str, Any] = {
         "pair": pair,

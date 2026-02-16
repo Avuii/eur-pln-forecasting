@@ -1,4 +1,3 @@
-# src/data_fetch.py
 from __future__ import annotations
 
 import argparse
@@ -42,9 +41,6 @@ def _to_date(s: str) -> date:
 
 
 def _chunks_by_93_days(start: date, end: date) -> Iterable[tuple[date, date]]:
-    """
-    Dzieli zakres [start, end] na podzakresy max 93 dni (włącznie).
-    """
     cur = start
     step = timedelta(days=MAX_DAYS_PER_REQUEST - 1)  # inclusive
     while cur <= end:
@@ -54,7 +50,6 @@ def _chunks_by_93_days(start: date, end: date) -> Iterable[tuple[date, date]]:
 
 
 def _pair_name(currency: str) -> str:
-    # np. EUR -> eurpln
     return f"{currency.lower()}pln"
 
 
@@ -66,10 +61,7 @@ def fetch_rates_range(
     session: requests.Session,
     logger: logging.Logger,
 ) -> list[dict[str, Any]]:
-    """
-    Pobiera kursy z NBP dla danego zakresu.
-    Zwraca listę rekordów 'rates' (effectiveDate, mid).
-    """
+
     url = f"{NBP_BASE}/exchangerates/rates/{table}/{code}/{start.isoformat()}/{end.isoformat()}/"
     headers = {"Accept": "application/json"}
     params = {"format": "json"}
@@ -77,8 +69,7 @@ def fetch_rates_range(
     r = session.get(url, headers=headers, params=params, timeout=30)
 
     if r.status_code == 404:
-        # brak danych w tym zakresie (np. trafiliśmy w same weekendy/święta)
-        logger.warning(f"404 brak danych: {start}..{end}")
+        logger.warning(f"404 no data: {start}..{end}")
         return []
 
     if not r.ok:
@@ -90,14 +81,6 @@ def fetch_rates_range(
 
 
 def compute_missing_days(df: pd.DataFrame, start: date, end: date) -> tuple[dict[str, Any], pd.DataFrame]:
-    """
-    Liczy braki kalendarzowe w [start, end] na podstawie dat notowań w df['date'].
-    Braki = weekendy + święta + inne dni bez notowania.
-
-    Zwraca:
-      - summary (json-friendly dict)
-      - missing_df (lista brakujących dat z dodatkowymi kolumnami)
-    """
     all_days = pd.date_range(start=start, end=end, freq="D")
     calendar_days = int((end - start).days + 1)
 
@@ -192,14 +175,13 @@ def compute_missing_days(df: pd.DataFrame, start: date, end: date) -> tuple[dict
 def main(config_path: str = "configs/config.json", run_dir: str | None = None, force_refresh: bool = False) -> Path:
     cfg = load_config(config_path)
 
-    # run_dir: jeśli podany -> użyj, jeśli nie -> utwórz nowy
     if run_dir is None:
         run_path = make_run_dir(cfg["output"]["runs_dir"])
         save_run_config(cfg, run_path)
     else:
         run_path = resolve_path(run_dir)
         (run_path / "plots").mkdir(parents=True, exist_ok=True)
-        # jeżeli runner już zapisał config.json, nie nadpisujemy; ale jak nie ma – zapisz
+
         if not (run_path / "config.json").exists():
             save_run_config(cfg, run_path)
 

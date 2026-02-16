@@ -6,6 +6,20 @@ import sys
 from datetime import datetime
 
 from src.config import load_config, resolve_path, save_run_config
+import warnings
+warnings.filterwarnings(
+    "ignore",
+    message=r"`sklearn\.utils\.parallel\.delayed` should be used with `sklearn\.utils\.parallel\.Parallel`.*",
+    category=UserWarning,
+    module=r"sklearn\.utils\.parallel",
+)
+warnings.filterwarnings(
+    "ignore",
+    message=r"The total space of parameters .* is smaller than n_iter=.*",
+    category=UserWarning,
+    module=r"sklearn\.model_selection\._search",
+)
+
 
 
 def main() -> None:

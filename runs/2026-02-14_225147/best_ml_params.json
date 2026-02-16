@@ -1,0 +1,58 @@
+{
+  "H1": {
+    "Ridge": {
+      "val_RMSE": 0.01061869352134533,
+      "alpha": 1.0
+    },
+    "ElasticNet": {
+      "val_RMSE": 0.010501620214669117,
+      "alpha": 0.0003,
+      "l1_ratio": 0.1
+    },
+    "RandomForest": {},
+    "ExtraTrees": {},
+    "HistGB": {}
+  },
+  "H7": {
+    "Ridge": {
+      "val_RMSE": 0.02565326412908218,
+      "alpha": 0.0001
+    },
+    "ElasticNet": {
+      "val_RMSE": 0.02568291389657345,
+      "alpha": 0.0001,
+      "l1_ratio": 0.1
+    },
+    "RandomForest": {},
+    "ExtraTrees": {},
+    "HistGB": {}
+  },
+  "H30": {
+    "Ridge": {
+      "val_RMSE": 0.04598814525527288,
+      "alpha": 0.0001
+    },
+    "ElasticNet": {
+      "val_RMSE": 0.0438300099215178,
+      "alpha": 0.01,
+      "l1_ratio": 0.8
+    },
+    "RandomForest": {},
+    "ExtraTrees": {},
+    "HistGB": {}
+  },
+  "H60": {
+    "Ridge": {
+      "val_RMSE": 0.0450535197220864,
+      "alpha": 100.0
+    },
+    "ElasticNet": {
+      "val_RMSE": 0.043361432863770574,
+      "alpha": 0.01,
+      "l1_ratio": 0.8
+    },
+    "RandomForest": {},
+    "ExtraTrees": {},
+    "HistGB": {}
+  }
+}

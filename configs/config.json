@@ -24,13 +24,19 @@
     "delta": true,
     "logret": true,
     "rolling_windows": [5, 10, 20, 60],
-    "ema_spans": [10, 20]
+    "ema_spans": [10, 20],
+    "include_calendar": true,
+    "calendar_mode": "onehot"
   },
 
   "tuning": {
     "use_timeseries_cv": true,
     "tscv_splits": 5,
     "n_iter": 40
+  },
+  "calendar": {
+    "enabled": true,
+    "cyclic": true
   },
 
   "seed": 123,

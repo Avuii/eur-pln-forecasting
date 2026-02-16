@@ -1,0 +1,214 @@
+{
+  "H1": {
+    "Ridge": {
+      "cv_best_RMSE": 0.016014025282715567,
+      "best_params": {
+        "model__alpha": 3.0
+      },
+      "n_splits": 5,
+      "n_iter": 40
+    },
+    "ElasticNet": {
+      "cv_best_RMSE": 0.015821164685345734,
+      "best_params": {
+        "model__l1_ratio": 0.95,
+        "model__alpha": 0.0003
+      },
+      "n_splits": 5,
+      "n_iter": 40
+    },
+    "RandomForest": {
+      "cv_best_RMSE": 0.027040909553538627,
+      "best_params": {
+        "n_estimators": 900,
+        "min_samples_leaf": 1,
+        "max_features": 0.8,
+        "max_depth": 8
+      },
+      "n_splits": 5,
+      "n_iter": 40
+    },
+    "ExtraTrees": {
+      "cv_best_RMSE": 0.029653557902790607,
+      "best_params": {
+        "n_estimators": 1500,
+        "min_samples_leaf": 4,
+        "max_features": 0.8,
+        "max_depth": 8
+      },
+      "n_splits": 5,
+      "n_iter": 40
+    },
+    "HistGB": {
+      "cv_best_RMSE": 0.02926268393544269,
+      "best_params": {
+        "min_samples_leaf": 10,
+        "max_iter": 400,
+        "max_depth": 3,
+        "learning_rate": 0.03,
+        "l2_regularization": 0.0
+      },
+      "n_splits": 5,
+      "n_iter": 40
+    }
+  },
+  "H7": {
+    "Ridge": {
+      "cv_best_RMSE": 0.04365383591848649,
+      "best_params": {
+        "model__alpha": 3.0
+      },
+      "n_splits": 5,
+      "n_iter": 40
+    },
+    "ElasticNet": {
+      "cv_best_RMSE": 0.04322857817085675,
+      "best_params": {
+        "model__l1_ratio": 0.6,
+        "model__alpha": 0.001
+      },
+      "n_splits": 5,
+      "n_iter": 40
+    },
+    "RandomForest": {
+      "cv_best_RMSE": 0.07358912511906161,
+      "best_params": {
+        "n_estimators": 1200,
+        "min_samples_leaf": 8,
+        "max_features": 0.6,
+        "max_depth": 6
+      },
+      "n_splits": 5,
+      "n_iter": 40
+    },
+    "ExtraTrees": {
+      "cv_best_RMSE": 0.07988906531089071,
+      "best_params": {
+        "n_estimators": 1500,
+        "min_samples_leaf": 8,
+        "max_features": "sqrt",
+        "max_depth": 6
+      },
+      "n_splits": 5,
+      "n_iter": 40
+    },
+    "HistGB": {
+      "cv_best_RMSE": 0.07726170664293265,
+      "best_params": {
+        "min_samples_leaf": 80,
+        "max_iter": 800,
+        "max_depth": 4,
+        "learning_rate": 0.01,
+        "l2_regularization": 0.0
+      },
+      "n_splits": 5,
+      "n_iter": 40
+    }
+  },
+  "H30": {
+    "Ridge": {
+      "cv_best_RMSE": 0.0822815675618761,
+      "best_params": {
+        "model__alpha": 100.0
+      },
+      "n_splits": 5,
+      "n_iter": 40
+    },
+    "ElasticNet": {
+      "cv_best_RMSE": 0.08256451368920212,
+      "best_params": {
+        "model__l1_ratio": 0.1,
+        "model__alpha": 0.01
+      },
+      "n_splits": 5,
+      "n_iter": 40
+    },
+    "RandomForest": {
+      "cv_best_RMSE": 0.11926056076902507,
+      "best_params": {
+        "n_estimators": 1200,
+        "min_samples_leaf": 8,
+        "max_features": "sqrt",
+        "max_depth": 4
+      },
+      "n_splits": 5,
+      "n_iter": 40
+    },
+    "ExtraTrees": {
+      "cv_best_RMSE": 0.12423056341394059,
+      "best_params": {
+        "n_estimators": 1200,
+        "min_samples_leaf": 8,
+        "max_features": "log2",
+        "max_depth": 6
+      },
+      "n_splits": 5,
+      "n_iter": 40
+    },
+    "HistGB": {
+      "cv_best_RMSE": 0.1255264067034911,
+      "best_params": {
+        "min_samples_leaf": 80,
+        "max_iter": 200,
+        "max_depth": 3,
+        "learning_rate": 0.01,
+        "l2_regularization": 0.1
+      },
+      "n_splits": 5,
+      "n_iter": 40
+    }
+  },
+  "H60": {
+    "Ridge": {
+      "cv_best_RMSE": 0.10629139616114494,
+      "best_params": {
+        "model__alpha": 100.0
+      },
+      "n_splits": 5,
+      "n_iter": 40
+    },
+    "ElasticNet": {
+      "cv_best_RMSE": 0.10717647974219333,
+      "best_params": {
+        "model__l1_ratio": 0.1,
+        "model__alpha": 0.01
+      },
+      "n_splits": 5,
+      "n_iter": 40
+    },
+    "RandomForest": {
+      "cv_best_RMSE": 0.13386165241781026,
+      "best_params": {
+        "n_estimators": 1200,
+        "min_samples_leaf": 8,
+        "max_features": "sqrt",
+        "max_depth": 4
+      },
+      "n_splits": 5,
+      "n_iter": 40
+    },
+    "ExtraTrees": {
+      "cv_best_RMSE": 0.13783503605673325,
+      "best_params": {
+        "n_estimators": 1200,
+        "min_samples_leaf": 8,
+        "max_features": "log2",
+        "max_depth": 6
+      },
+      "n_splits": 5,
+      "n_iter": 40
+    },
+    "HistGB": {
+      "cv_best_RMSE": 0.14153028450217575,
+      "best_params": {
+        "min_samples_leaf": 80,
+        "max_iter": 200,
+        "max_depth": 3,
+        "learning_rate": 0.01,
+        "l2_regularization": 0.1
+      },
+      "n_splits": 5,
+      "n_iter": 40
+    }
+  }
+}

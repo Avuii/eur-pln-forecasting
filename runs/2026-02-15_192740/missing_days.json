@@ -1,0 +1,148 @@
+{
+  "start": "2010-01-01",
+  "end": "2026-02-15",
+  "calendar_days": 5890,
+  "observations": 4067,
+  "missing_days_total": 1823,
+  "missing_weekend": 1684,
+  "missing_weekday": 139,
+  "missing_ratio": 0.3095076400679117,
+  "per_year": {
+    "2010": {
+      "calendar_days": 365,
+      "observations": 255,
+      "missing_total": 110,
+      "missing_weekend": 104,
+      "missing_weekday": 6,
+      "missing_ratio": 0.3013698630136986
+    },
+    "2011": {
+      "calendar_days": 365,
+      "observations": 252,
+      "missing_total": 113,
+      "missing_weekend": 105,
+      "missing_weekday": 8,
+      "missing_ratio": 0.3095890410958904
+    },
+    "2012": {
+      "calendar_days": 366,
+      "observations": 252,
+      "missing_total": 114,
+      "missing_weekend": 105,
+      "missing_weekday": 9,
+      "missing_ratio": 0.3114754098360656
+    },
+    "2013": {
+      "calendar_days": 365,
+      "observations": 251,
+      "missing_total": 114,
+      "missing_weekend": 104,
+      "missing_weekday": 10,
+      "missing_ratio": 0.31232876712328766
+    },
+    "2014": {
+      "calendar_days": 365,
+      "observations": 252,
+      "missing_total": 113,
+      "missing_weekend": 104,
+      "missing_weekday": 9,
+      "missing_ratio": 0.3095890410958904
+    },
+    "2015": {
+      "calendar_days": 365,
+      "observations": 254,
+      "missing_total": 111,
+      "missing_weekend": 104,
+      "missing_weekday": 7,
+      "missing_ratio": 0.3041095890410959
+    },
+    "2016": {
+      "calendar_days": 366,
+      "observations": 252,
+      "missing_total": 114,
+      "missing_weekend": 105,
+      "missing_weekday": 9,
+      "missing_ratio": 0.3114754098360656
+    },
+    "2017": {
+      "calendar_days": 365,
+      "observations": 251,
+      "missing_total": 114,
+      "missing_weekend": 105,
+      "missing_weekday": 9,
+      "missing_ratio": 0.31232876712328766
+    },
+    "2018": {
+      "calendar_days": 365,
+      "observations": 252,
+      "missing_total": 113,
+      "missing_weekend": 104,
+      "missing_weekday": 9,
+      "missing_ratio": 0.3095890410958904
+    },
+    "2019": {
+      "calendar_days": 365,
+      "observations": 251,
+      "missing_total": 114,
+      "missing_weekend": 104,
+      "missing_weekday": 10,
+      "missing_ratio": 0.31232876712328766
+    },
+    "2020": {
+      "calendar_days": 366,
+      "observations": 255,
+      "missing_total": 111,
+      "missing_weekend": 104,
+      "missing_weekday": 7,
+      "missing_ratio": 0.30327868852459017
+    },
+    "2021": {
+      "calendar_days": 365,
+      "observations": 254,
+      "missing_total": 111,
+      "missing_weekend": 104,
+      "missing_weekday": 7,
+      "missing_ratio": 0.3041095890410959
+    },
+    "2022": {
+      "calendar_days": 365,
+      "observations": 252,
+      "missing_total": 113,
+      "missing_weekend": 105,
+      "missing_weekday": 8,
+      "missing_ratio": 0.3095890410958904
+    },
+    "2023": {
+      "calendar_days": 365,
+      "observations": 251,
+      "missing_total": 114,
+      "missing_weekend": 105,
+      "missing_weekday": 9,
+      "missing_ratio": 0.31232876712328766
+    },
+    "2024": {
+      "calendar_days": 366,
+      "observations": 252,
+      "missing_total": 114,
+      "missing_weekend": 104,
+      "missing_weekday": 10,
+      "missing_ratio": 0.3114754098360656
+    },
+    "2025": {
+      "calendar_days": 365,
+      "observations": 251,
+      "missing_total": 114,
+      "missing_weekend": 104,
+      "missing_weekday": 10,
+      "missing_ratio": 0.31232876712328766
+    },
+    "2026": {
+      "calendar_days": 46,
+      "observations": 30,
+      "missing_total": 16,
+      "missing_weekend": 14,
+      "missing_weekday": 2,
+      "missing_ratio": 0.34782608695652173
+    }
+  }
+}
